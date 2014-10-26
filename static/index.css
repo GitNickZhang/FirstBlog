@@ -1,0 +1,28 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+.header{
+	height: 200px;
+	width: 100%;
+	margin-top: 20px;
+}
+.header .head-protrait{
+	margin: 0 auto;
+	height: 100px;
+	width: 100px;
+	/*待改善*/
+}
+.header .head-protrait img{
+	height: 100px;
+	width: 100px;
+	/*待改善*/
+}
+.header .intro{
+	height: 85px;
+	line-height: 85px;
+	text-align: center;
+}
