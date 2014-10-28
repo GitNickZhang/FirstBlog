@@ -2,9 +2,19 @@
 	margin: 0;
 	padding: 0;
 }
+body{
+	background-image: url(../../static/background.jpg);
+	font-family: '微软雅黑' !important;
+}
 li{
 	list-style: none;
 }
+
+.wrapper{
+	width: 900px;
+	margin: 0 auto;
+}
+/*Header*/
 .header{
 	height: 200px;
 	width: 100%;
@@ -25,4 +35,22 @@ li{
 	height: 85px;
 	line-height: 85px;
 	text-align: center;
+}
+
+/*Content*/
+.content-wrapper{
+	margin: 0 auto;
+	padding-top: 20px;
+}
+.content{
+	padding-left: 150px; 
+}
+.content-paragraph{
+	border-left: 2px solid #F1F0EE;
+	padding: 50px 0px 80px 40px;
+}
+.pagination-author{
+	margin: 0 auto;
+	width: 67px;
+	/*宽度如何确定*/
 }

@@ -2,15 +2,43 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../../static/index.css">
+	<link rel="stylesheet" href="../../static/css/font-awesome.css">
+
+	<!-- Bootstrap -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
 	<title>Nick's Blog</title>
 </head>
 <body>
-	<div class="header">
-		<div class="head-protrait">
-			<img src="../../static/1.jpg" title="{{ User }}" alt="头像">
+	<div class="wrapper">
+		<div class="header">
+			<div class="head-protrait">
+				<img src="../../static/1.jpg" title="{{ User }}" alt="头像">
+			</div>
+			<div class="intro">Welcome to Nick's blog!</div>
 		</div>
-		<div class="intro">Welcome to Nick's blog!</div>
+		<div class="content-wrapper">
+			<div class="content"> 
+				{% block paragraph %}
+				{% endblock %}
+			</div>
+			<div class="pagination-author" style="width: {{width}}px">
+				<ul class="pagination">
+					{% block pagination %}
+					{% endblock %}
+				</ul>
+			</div>
+		</div>
 	</div>
+
+	<!-- Scripts -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
