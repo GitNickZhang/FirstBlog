@@ -1,19 +1,24 @@
 {% extends 'index.html' %}				
 
 {% block paragraph %}
+{% for post in posts.object_list %}
 <div class="content-paragraph">
 	<div>
-		First paragraph!
+		<h2>{{ post.title }}</h2>
+		<p>{{ post.time }}</p>
+		<p>{{ post.body }}</p>
+		<span class="glyphicon glyphicon-tags paragraph-mark"></span>
 	</div>				
 </div>
+{% endfor %}
 {% endblock %}				
 
 {% block pagination %}
 {% for i in pages %}
 {% ifequal i current_page %}
-<li class="active"><a href="page={{i}}">{{ i }}</a></li>
+<li class="active"><a href="?page={{i}}">{{ i }}</a></li>
 {% else %}
-<li><a href="page={{i}}">{{ i }}</a></li>
+<li><a href="?page={{i}}">{{ i }}</a></li>
 {% endifequal %}
 {% endfor %}
 {% endblock %}

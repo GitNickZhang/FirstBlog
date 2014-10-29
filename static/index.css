@@ -11,14 +11,15 @@ li{
 }
 
 .wrapper{
-	width: 900px;
 	margin: 0 auto;
 }
 /*Header*/
 .header{
-	height: 200px;
-	width: 100%;
-	margin-top: 20px;
+	min-height: 400px;
+	background: url(../../static/header_img.jpg) no-repeat center 0px / cover #222; 
+	padding-top: 150px;
+	text-align: center;
+	color: #FFF;
 }
 .header .head-protrait{
 	margin: 0 auto;
@@ -31,14 +32,14 @@ li{
 	width: 100px;
 	/*待改善*/
 }
-.header .intro{
-	height: 85px;
-	line-height: 85px;
-	text-align: center;
+.header .logo-txt{
+	color: #FFF;
+	font-size: 64px;
 }
 
 /*Content*/
 .content-wrapper{
+	width: 900px;
 	margin: 0 auto;
 	padding-top: 20px;
 }
@@ -46,8 +47,13 @@ li{
 	padding-left: 150px; 
 }
 .content-paragraph{
+	position: relative;
 	border-left: 2px solid #F1F0EE;
 	padding: 50px 0px 80px 40px;
+}
+.paragraph-mark{
+	position: absolute !important;
+	left: 0;
 }
 .pagination-author{
 	margin: 0 auto;

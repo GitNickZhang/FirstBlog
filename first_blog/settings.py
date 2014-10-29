@@ -62,7 +62,7 @@ DATABASES = {
         'NAME': 'first_blog',
         'USER': 'Nick',
         'PASSWORD': 'fsbobo147002079',
-        'HOST': '',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
