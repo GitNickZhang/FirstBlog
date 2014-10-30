@@ -15,22 +15,42 @@ li{
 }
 /*Header*/
 .header{
-	min-height: 400px;
-	background: url(../../static/header_img.jpg) no-repeat center 0px / cover #222; 
-	padding-top: 150px;
+	min-height: 720px;
+	background: url(../../static/bgimg-1.jpg) no-repeat center 0px / cover #222; 
+	padding-top: 200px;
 	text-align: center;
 	color: #FFF;
+	position: relative;
+}
+.header .nav{
+	width: 1170px;
+	position: absolute;
+	top: 10%;
+}
+.header .nav .nav-list{
+	float: right;
+}
+.header .nav .nav-list .nav-list-item{
+	display: inline-block;
+}
+.header .nav .nav-list .nav-list-item a{
+	font-size: 20px;
+	color: #FFF;
+	text-decoration: none;
+	padding: 0 20px 0 10px;
+	opacity: 0.8;
+}
+.header .nav .nav-list .log-in a{
+	opacity: 0.5;
 }
 .header .head-protrait{
-	margin: 0 auto;
-	height: 100px;
-	width: 100px;
-	/*待改善*/
+	position: absolute;
+	top: 93%;
+	left: 46%;
 }
 .header .head-protrait img{
 	height: 100px;
 	width: 100px;
-	/*待改善*/
 }
 .header .logo-txt{
 	color: #FFF;
@@ -59,4 +79,14 @@ li{
 	margin: 0 auto;
 	width: 67px;
 	/*宽度如何确定*/
+}
+
+/*Footer*/
+.footer{
+	width: 900px;
+	margin: 0 auto;
+	border-top: 1px solid #F1F0EE;
+	height: 150px;
+	line-height: 150px;
+	text-align: center;
 }

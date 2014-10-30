@@ -15,11 +15,21 @@
 <body>
 	<div class="wrapper">
 		<div class="header">
-			<!-- <div class="head-protrait">
-				<img src="../../static/1.jpg" title="{{ User }}" alt="头像">
-			</div> -->
+			<div class="nav">
+				<ul class="nav-list">
+					<li class="nav-list-item"><a href="#">首页</a></li>
+					<li class="nav-list-item"><a href="#">博客</a></li>
+					<li class="nav-list-item"><a href="#">其他</a></li>
+					<li class="nav-list-item log-in"><a href="#">Log in</a></li>
+				</ul>
+			</div>
 			<a href="#" class="logo-txt">HERE WE ARE</a>
-			<h1 class="intro">请别安静</h1>
+			<h1 class="intro">且听风吟</h1>
+			<div class="head-protrait">
+				<a href="#">
+					<img src="../../static/head_portrait.png" title="{{ User }}" alt="头像">
+				</a>
+			</div>
 		</div>
 		<div class="content-wrapper">
 			<div class="content"> 
@@ -33,13 +43,19 @@
 				</ul>
 			</div>
 		</div>
+		<div class="footer">
+			<p class="copyright">
+				@2014 Dalian NickZhang. All rights reserved. 
+			</p>
+		</div>
 	</div>
 
 	<!-- Scripts -->
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="../../static/index.js"></script>
 </body>
 </html>
