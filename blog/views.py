@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
 from blog.models import BlogPost, User
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
 
@@ -11,7 +12,7 @@ from django import forms
 
 
 def index(req):
-    return render_to_response('content.html', {'User': 'Nick'})
+    return render(req, 'content.html', {'User': 'Nick'})
 
 
 def page(req):
@@ -33,7 +34,7 @@ def page(req):
     except (EmptyPage, InvalidPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response('content.html', {
+    return render(req, 'content.html', {
         'User': 'Nick',
         'pages': pages,
         'current_page': int(page),
@@ -47,37 +48,47 @@ class UserForm(forms.Form):
     password = forms.CharField(label='密码：', widget=forms.PasswordInput())
 
 
-def register(request):
-    if request.method == 'GET':
-        userform = UserForm(request.GET)
-        if userform.is_valid():
-            username = userform.cleaned_data['username']
-            password = userform.cleaned_data['password']
+# def register(request):
+#     if request.method == 'GET':
+#         userform = UserForm(request.GET)
+#         if userform.is_valid():
+#             username = userform.cleaned_data['username']
+#             password = userform.cleaned_data['password']
 
-            user = User()
-            user.username = username
-            user.password = password
-            user.save()
+#             user = User()
+#             user.username = username
+#             user.password = password
+#             user.save()
 
-            return render_to_response('success.html', {'username': username})
+#             return render_to_response('success.html', {'username': username})
+#     else:
+#         userform = UserForm()
+#     return render_to_response('register.html', {'userform': userform})
+
+
+# def login(request):
+#     if request.method == 'GET':
+#         userform = UserForm(request.GET)
+#         if userform.is_valid():
+#             username = userform.cleaned_data['username']
+#             password = userform.cleaned_data['password']
+
+#             user = User.objects.filter(
+#                 username__exact=username, password__exact=password)
+#             if user:
+#                 return render_to_response('success.html', {'username': username})
+#             else:
+#                 return HttpResponseRedirect('/login/')
+#     else:
+#         userform = UserForm()
+#     return render_to_response('login.html', {'userform': userform})
+
+def register(req):
+    if req.method == 'POST':
+        form = UserCreationForm(req.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponse('Success')
     else:
-        userform = UserForm()
-    return render_to_response('register.html', {'userform': userform})
-
-
-def login(request):
-    if request.method == 'GET':
-        userform = UserForm(request.GET)
-        if userform.is_valid():
-            username = userform.cleaned_data['username']
-            password = userform.cleaned_data['password']
-
-            user = User.objects.filter(
-                username__exact=username, password__exact=password)
-            if user:
-                return render_to_response('success.html', {'username': username})
-            else:
-                return HttpResponseRedirect('/login/')
-    else:
-        userform = UserForm()
-    return render_to_response('login.html', {'userform': userform})
+        form = UserCreationForm()
+    return render(req, 'registration/register.html', {'form': form})

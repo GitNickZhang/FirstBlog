@@ -89,3 +89,6 @@ STATIC_ROOT = ''
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), '../static/').replace('\\', '/'),
 )
+
+# Data for next
+LOGIN_REDIRECT_URL = '/index/'
