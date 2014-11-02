@@ -20,7 +20,9 @@
 					<li class="nav-list-item"><a href="#">首页</a></li>
 					<li class="nav-list-item"><a href="#">博客</a></li>
 					<li class="nav-list-item"><a href="#">其他</a></li>
-					<li class="nav-list-item log-in"><a href="#">Log in</a></li>
+					<li class="nav-list-item log-in">
+						<a href="{% url 'django.contrib.auth.views.login' %}">Log in</a>
+					</li>
 				</ul>
 			</div>
 			<a href="#" class="logo-txt">HERE WE ARE</a>
@@ -47,6 +49,11 @@
 			<p class="copyright">
 				@2014 Dalian NickZhang. All rights reserved. 
 			</p>
+			{% if user.is_authenticated %}
+				<span class="username">				
+					{{ user }}
+				</span>
+			{% endif %}
 		</div>
 	</div>
 
