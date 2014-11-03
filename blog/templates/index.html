@@ -17,13 +17,46 @@
 		<div class="header">
 			<div class="nav">
 				<ul class="nav-list">
-					<li class="nav-list-item"><a href="#">首页</a></li>
-					<li class="nav-list-item"><a href="#">博客</a></li>
-					<li class="nav-list-item"><a href="#">其他</a></li>
-					<li class="nav-list-item log-in">
-						<a href="{% url 'django.contrib.auth.views.login' %}">Log in</a>
+					<li class="nav-item">
+						<a href="#">
+							<span class="glyphicon glyphicon-home nav-icon"></span>
+							首页
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#">
+							<span class="glyphicon glyphicon-book nav-icon"></span>
+							博客
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#">
+							<span class="glyphicon glyphicon-tags nav-icon"></span>
+							其他
+						</a>
 					</li>
 				</ul>
+				{% if user.is_authenticated %}
+					<div class="nav-item log-in dropdown">
+						<a id="dLabel" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-user nav-icon"></span>
+							{{ user }}
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						    <li>hah</li>
+						    <li>hah</li>
+						</ul>
+					</div>
+				{% else %}
+					<div class="nav-item log-in">
+						<a href="{% url 'django.contrib.auth.views.login' %}">
+							<span class="glyphicon glyphicon-user nav-icon"></span>
+							Log in
+						</a>
+					</div>
+				{% endif %}
+				
 			</div>
 			<a href="#" class="logo-txt">HERE WE ARE</a>
 			<h1 class="intro">且听风吟</h1>
@@ -49,11 +82,6 @@
 			<p class="copyright">
 				@2014 Dalian NickZhang. All rights reserved. 
 			</p>
-			{% if user.is_authenticated %}
-				<span class="username">				
-					{{ user }}
-				</span>
-			{% endif %}
 		</div>
 	</div>
 
