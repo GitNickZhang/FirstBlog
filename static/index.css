@@ -50,6 +50,7 @@ li{
 	text-decoration: none;
 	padding-right: 20px;
 	opacity: 0.8;
+	outline: none;
 }
 .header .nav .log-in{
 	height: 48px;
@@ -61,6 +62,10 @@ li{
 	padding-top: 15px;
 	padding-bottom: 14px;
 	padding-right: 0;
+}
+.header .nav .log-in .user-menu .user-menu-item a{
+	width: 100%;
+	padding: 10px 10px 10px 10px;
 }
 .header .head-protrait{
 	position: absolute;

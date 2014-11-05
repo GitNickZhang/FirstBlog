@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     # 设置引用静态文件的路径
     url(r'^index/$', 'blog.views.page'),
-    url(r'^login/$' ,login),
+    url(r'^login/$', login),
     url(r'^register/$', 'blog.views.register'),
     url(r'^logout/$', logout, {'template_name': 'index.html', 'redirect_field_name': '/index/'}),
 )

@@ -13,7 +13,61 @@
 	<title>Nick's Blog</title>
 </head>
 <body>
+	<!-- Modal -->
+	<div id="login" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Log in</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>One fine body&hellip;</p>
+	        <form action="{% url 'django.contrib.auth.views.login' %}" method="POST">
+				{% csrf_token %}
+				<table>
+					<tr>
+						<td>{{ form.username.label_tag }}</td>
+						<td>{{ form.username }}</td>
+					</tr>
+					<tr>
+						<td>{{ form.password.label_tag }}</td>
+						<td>{{ form.password }}</td>
+					</tr>
+				</table>
+				<button type="submit" class="btn btn-primary">登录</button>
+				<input type="hidden" name="next" value="{{ next }}">
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div id="register" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Register</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>One fine body&hellip;</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- Main -->
 	<div class="wrapper">
+		<!-- Start Header -->
 		<div class="header">
 			<div class="nav">
 				<ul class="nav-list">
@@ -43,20 +97,29 @@
 							{{ user }}
 							<span class="caret"></span>
 						</a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						    <li>hah</li>
-						    <li>hah</li>
+						<ul class="dropdown-menu user-menu" role="menu" aria-labelledby="dLabel">
+						    <li class="user-menu-item">
+						    	<a href="#">
+						    		<i class="icon-user"></i>
+						    		我的信息
+						    	</a>
+						    </li>
+						    <li class="user-menu-item">
+						    	<a href="/logout/">
+						    		<i class="icon-key"></i>
+						    		注销
+						    	</a>
+						    </li>
 						</ul>
 					</div>
 				{% else %}
 					<div class="nav-item log-in">
-						<a href="{% url 'django.contrib.auth.views.login' %}">
+						<a data-toggle="modal" href="#login">
 							<span class="glyphicon glyphicon-user nav-icon"></span>
 							Log in
 						</a>
 					</div>
-				{% endif %}
-				
+				{% endif %}			
 			</div>
 			<a href="#" class="logo-txt">HERE WE ARE</a>
 			<h1 class="intro">且听风吟</h1>
@@ -66,6 +129,9 @@
 				</a>
 			</div>
 		</div>
+		<!-- End Header -->
+
+		<!-- Start Content -->
 		<div class="content-wrapper">
 			<div class="content"> 
 				{% block paragraph %}
@@ -78,11 +144,15 @@
 				</ul>
 			</div>
 		</div>
+		<!-- End Content -->
+
+		<!-- Start Footer -->
 		<div class="footer">
 			<p class="copyright">
 				@2014 Dalian NickZhang. All rights reserved. 
 			</p>
 		</div>
+		<!-- End Header -->
 	</div>
 
 	<!-- Scripts -->
