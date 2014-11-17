@@ -2,23 +2,91 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="../../static/login.css">
+	<link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/css/font-awesome.css">
 	<title>Log in</title>
 </head>
 <body>
-	<form action="{% url 'django.contrib.auth.views.login' %}" method="POST">
-		{% csrf_token %}
-		<table>
-			<tr>
-				<td>{{ form.username.label_tag }}</td>
-				<td>{{ form.username }}</td>
-			</tr>
-			<tr>
-				<td>{{ form.password.label_tag }}</td>
-				<td>{{ form.password }}</td>
-			</tr>
-		</table>
-		<input type="submit" value="ok">
-		<!-- <input type="hidden" name="next" value="{{ next }}"> -->
-	</form>
+	<div class="wrapper">
+		<div class="logo">
+			<img src="../../static/head_portrait.png" alt="" width="70px" height="70px">
+		</div>
+		<!-- Login Form -->
+		<div class="content login">
+			<div class="content-title">
+				<h2>Login your account here</h2>
+			</div>
+			<div class="content-form">
+				<form action="{% url 'django.contrib.auth.views.login' %}" method="POST">
+					{% csrf_token %}
+					<div class="content-form-group">
+						<i class="form-icon icon-user"></i>
+						<input type="text" placeholder="Username" name="username">
+					</div>
+					<div class="content-form-group">
+						<i class="form-icon icon-lock"></i>
+						<input type="password" placeholder="Password" name="password">
+					</div>
+					<div class="content-form-submit">
+						<button class="btn btn-primary btn-submit" type="submit">
+							Login
+							<i class="icon-circle-arrow-right"></i>
+						</button>
+					</div>
+					<!-- <input type="hidden" name="next" value="{{ next }}"> -->
+				</form>	
+			</div>
+			<div class="content-footer">
+				<h4>Don't have an account yet ?</h4>
+				Click <a href="javascript:;" class="direct-to-register">here</a> to register!
+			</div>
+		</div>
+		<!-- Register Form -->
+		<div class="content register" style="display: none;">
+			<div class="content-title">
+				<h2>Create an account here</h2>
+			</div>
+			<div class="content-form">
+				<form action="{% url 'blog.views.register' %}" method="POST">
+					{% csrf_token %}
+					<div class="content-form-group">
+						<i class="form-icon icon-user"></i>
+						<input type="text" placeholder="Username" name="username">
+					</div>
+					<div class="content-form-group">
+						<i class="form-icon icon-lock"></i>
+						<input type="password" placeholder="Password" name="password1">
+					</div>
+					<div class="content-form-group">
+						<i class="form-icon icon-ok"></i>
+						<input type="password" placeholder="Confirm your password" name="password2">
+					</div>
+					<div class="content-form-submit">
+						<button class="btn btn-default btn-back" type="button">
+							<i class="icon-circle-arrow-left"></i>
+							Back
+						</button>
+						<button class="btn btn-primary btn-submit" type="submit">
+							Register
+							<i class="icon-circle-arrow-right"></i>
+						</button>
+					</div>
+					<!-- <input type="hidden" name="next" value="{{ next }}"> -->
+				</form>	
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Scripts -->
+	<script type="text/javascript" src="../../static/login.js"></script>
 </body>
 </html>

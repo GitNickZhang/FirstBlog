@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from django.contrib.auth.views import login, logout
+from django.contrib import auth
 from django import forms
 
 
@@ -49,52 +50,14 @@ def page(req):
     })
 
 
-class UserForm(forms.Form):
-    username = forms.CharField(label='用户名：', max_length=100)
-    password = forms.CharField(label='密码：', widget=forms.PasswordInput())
 
-
-# def register(request):
-#     if request.method == 'GET':
-#         userform = UserForm(request.GET)
-#         if userform.is_valid():
-#             username = userform.cleaned_data['username']
-#             password = userform.cleaned_data['password']
-
-#             user = User()
-#             user.username = username
-#             user.password = password
-#             user.save()
-
-#             return render_to_response('success.html', {'username': username})
-#     else:
-#         userform = UserForm()
-#     return render_to_response('register.html', {'userform': userform})
-
-
-# def login(request):
-#     if request.method == 'GET':
-#         userform = UserForm(request.GET)
-#         if userform.is_valid():
-#             username = userform.cleaned_data['username']
-#             password = userform.cleaned_data['password']
-
-#             user = User.objects.filter(
-#                 username__exact=username, password__exact=password)
-#             if user:
-#                 return render_to_response('success.html', {'username': username})
-#             else:
-#                 return HttpResponseRedirect('/login/')
-#     else:
-#         userform = UserForm()
-#     return render_to_response('login.html', {'userform': userform})
 
 def register(req):
     if req.method == 'POST':
         form = UserCreationForm(req.POST)
         if form.is_valid():
             new_user = form.save()
-            return HttpResponse('Success')
+            return HttpResponseRedirect('/index/')
     else:
         form = UserCreationForm()
-    return render(req, 'registration/register.html', {'form': form})
+    return render(req, 'registration/login.html', {'form': form})

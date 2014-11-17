@@ -35,7 +35,7 @@
 						<td>{{ form.password }}</td>
 					</tr>
 				</table>
-				<button type="submit" class="btn btn-primary">登录</button>
+				<button type="submit" class="btn btn-primary submit-btn">登录</button>
 				<input type="hidden" name="next" value="{{ next }}">
 			</form>
 	      </div>
@@ -114,7 +114,7 @@
 					</div>
 				{% else %}
 					<div class="nav-item log-in">
-						<a data-toggle="modal" href="#login">
+						<a href="/login/">
 							<span class="glyphicon glyphicon-user nav-icon"></span>
 							Log in
 						</a>

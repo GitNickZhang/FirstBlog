@@ -16,4 +16,5 @@ $(function(){
 			$('.user-menu').css('display', 'none');
 		}
 		);
+
 })
