@@ -57,7 +57,7 @@ def register(req):
         form = UserCreationForm(req.POST)
         if form.is_valid():
             new_user = form.save()
-            return HttpResponseRedirect('/index/')
+            return HttpResponse(new_user)
     else:
         form = UserCreationForm()
     return render(req, 'registration/login.html', {'form': form})
