@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from blog.models import BlogPost, User
+from blog.models import BlogPost, User, Comment
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
@@ -61,3 +61,11 @@ def register(req):
     else:
         form = UserCreationForm()
     return render(req, 'registration/login.html', {'form': form})
+
+
+def comment(req):
+	if req.method == 'POST':
+		form = Comment(req.POST) # 换成表单
+		comment = form.save()
+		return HttpResponse(comment)
+	return render(req, 'comment.html')
