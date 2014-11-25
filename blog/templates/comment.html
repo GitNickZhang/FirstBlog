@@ -7,6 +7,23 @@
 	<input type="text" name="comment">
 	<button type="submit">提交</button>
 </form>
+{% for comment in comments.object_list %}
+	<p>
+		{{ comment.username }}
+	</p>
+	<p>
+		{{ comment.comment }}
+	</p>
+{% endfor %}
+<!-- 单纯输出数据库内数据 -->
+<!-- {% for test in tests %}
+<p>
+	{{ test.username }}
+</p>
+<p>
+	{{ test.comment }}
+</p>
+{% endfor %} -->
 {% endblock %}				
 
 {% block pagination %}

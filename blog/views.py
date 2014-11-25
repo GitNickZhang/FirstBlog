@@ -3,6 +3,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from blog.models import BlogPost, User, Comment
+from blog.forms import CommentForm
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
@@ -65,7 +66,27 @@ def register(req):
 
 def comment(req):
 	if req.method == 'POST':
-		form = Comment(req.POST) # 换成表单
+		form = CommentForm(req.POST) # 换成表单
 		comment = form.save()
-		return HttpResponse(comment)
-	return render(req, 'comment.html')
+		return HttpResponseRedirect('/comment/')
+	comment_list = Comment.objects.all()
+	paginator = Paginator(comment_list, 3)
+	num_pages = paginator.num_pages
+	pages = range(1, num_pages + 1)
+
+	# Make sure page request is an int. If not, deliver first page.
+	try:
+	    page = int(req.GET.get('page', '1'))
+	except ValueError:
+		page = 1
+
+	 # If page request (9999) is out of range, deliver last page of results.
+	try:
+		comments = paginator.page(page)
+	except (EmptyPage, InvalidPage):
+		comments = paginator.page(paginator.num_pages)
+
+	return render(req, 'comment.html', {
+		'comments': comments,
+		'tests': comment_list,
+		})
