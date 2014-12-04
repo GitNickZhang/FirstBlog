@@ -72,15 +72,15 @@
 			<div class="nav">
 				<ul class="nav-list">
 					<li class="nav-item">
-						<a href="#">
+						<a href="/index/">
 							<span class="glyphicon glyphicon-home nav-icon"></span>
-							首页
+							博客
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#">
+						<a href="/comment/">
 							<span class="glyphicon glyphicon-book nav-icon"></span>
-							博客
+							留言板
 						</a>
 					</li>
 					<li class="nav-item">
@@ -142,6 +142,10 @@
 					{% block pagination %}
 					{% endblock %}
 				</ul>
+			</div>
+			<div class="content comment">
+				{% block comment %}
+				{% endblock %}
 			</div>
 		</div>
 		<!-- End Content -->

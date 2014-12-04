@@ -43,7 +43,7 @@ def page(req):
 
 	return render(req, 'content.html', {
         'User': 'Nick',
-        'pages': pages,
+        'pages': pages,	
         'current_page': int(page),
         'width': width,
         'posts': posts,
@@ -67,12 +67,14 @@ def register(req):
 def comment(req):
 	if req.method == 'POST':
 		form = CommentForm(req.POST) # 换成表单
-		comment = form.save()
-		return HttpResponseRedirect('/comment/')
+		if form.is_valid():
+			comment = form.save()
+			return HttpResponseRedirect('/comment/')
 	comment_list = Comment.objects.all()
-	paginator = Paginator(comment_list, 3)
+	paginator = Paginator(comment_list, 10)
 	num_pages = paginator.num_pages
 	pages = range(1, num_pages + 1)
+	width = num_pages * 34
 
 	# Make sure page request is an int. If not, deliver first page.
 	try:
@@ -89,4 +91,7 @@ def comment(req):
 	return render(req, 'comment.html', {
 		'comments': comments,
 		'tests': comment_list,
+		'pages': pages,	
+        'current_page': int(page),
+        'width': width,
 		})

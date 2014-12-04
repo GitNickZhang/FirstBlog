@@ -1,31 +1,52 @@
 {% extends 'index.html' %}				
 
 {% block paragraph %}
-<form action="/comment/" method="POST">
-	{% csrf_token %}
-	<input type="text" name="username">
-	<input type="text" name="comment">
-	<button type="submit">提交</button>
-</form>
-{% for comment in comments.object_list %}
+	{% for comment in comments.object_list %}
+		<div class="comment-content">
+			<div class="comment-username">
+				<p>{{ comment.time }} </p>
+				{{ comment.username }}：
+			</div>
+			<div class="comment-comments">
+				{{ comment.comment }}
+			</div>
+		</div>
+	{% endfor %}
+
+	<!-- 单纯输出数据库内数据 -->
+	<!-- {% for test in tests %}
 	<p>
-		{{ comment.username }}
+		{{ test.username }}
 	</p>
 	<p>
-		{{ comment.comment }}
+		{{ test.comment }}
 	</p>
-{% endfor %}
-<!-- 单纯输出数据库内数据 -->
-<!-- {% for test in tests %}
-<p>
-	{{ test.username }}
-</p>
-<p>
-	{{ test.comment }}
-</p>
-{% endfor %} -->
+	{% endfor %} -->
 {% endblock %}				
 
 {% block pagination %}
+	{% for i in pages %}
+		{% ifequal i current_page %}
+			<li class="active"><a href="?page={{i}}">{{ i }}</a></li>
+		{% else %}
+			<li><a href="?page={{i}}">{{ i }}</a></li>
+		{% endifequal %}
+	{% endfor %}
+{% endblock %}
 
+{% block comment %}
+	<div class="comment-form">
+		{% if user.is_authenticated %}
+		<form action="/comment/" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="username" value="{{user}}">
+			<textarea name="comment" cols="30" rows="10"></textarea>
+			<button class="btn btn-primary" type="submit">提交</button>
+		</form>
+		{% else %}
+		<h3>
+			请<a href="/login/">登录</a>后再留言~	
+		</h3>
+		{% endif %}
+	</div>
 {% endblock %}

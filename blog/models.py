@@ -14,3 +14,4 @@ class User(models.Model):
 class Comment(models.Model):
 	username = models.CharField(max_length=20)
 	comment = models.TextField()
+	time = models.DateTimeField(auto_now=True)
